@@ -1,7 +1,7 @@
 // Load environment variables locally
 
 
-const FACEIT_API_KEY = "855ef453-e82a-40dc-8d4e-f7aa0ab9894d";
+//const FACEIT_API_KEY = "855ef453-e82a-40dc-8d4e-f7aa0ab9894d";
 
 
 
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     return res.status(200).json(cached.data);
   }
 
-  const apiKey = FACEIT_API_KEY;
+  const apiKey = process.env.FACEIT_API_KEY;
   if (!apiKey) {
     console.error("FACEIT_API_KEY not set");
     return res.status(500).json({ error: "API key not set" });
@@ -106,4 +106,5 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Server error or invalid API key" });
   }
 }
+
 
