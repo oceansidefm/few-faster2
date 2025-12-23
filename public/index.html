@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>faceit widget</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bytesized&family=Doto&display=swap" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+
+
+
+
+
+
+    <!-- Main-->
+
+    
+
+    <div class="main-homepage">
+        <div style="display: flex; align-items: center;">
+                 
+            <div>
+                <img class="image-glow" id="level-pic" alt="" loading="lazy" width="64" height="64" decoding="async" data-nimg="1" src="https://faceit-widget.pages.dev/assets/icons/skill_level/skill_level_0.svg" style="margin-right: 20px; color: white;">
+            </div>
+
+            <div>
+                <a class="noline text-glow text-colour-white text-center header font-bytesized" id="nicknameValue">Username</a>
+                <br>
+                <a class="noline subtext text-glow-large text-colour-white font-inter" id="eloValue">Elo</a>
+                    <!-- <span class="subtext text-glow-small text-colour-white font-inter"> Elo </span> -->
+                    <span class="subtext text-glow-small text-colour-white font-inter"> | </span>
+                <a class="noline subtext text-glow-large text-colour-white font-inter" id="kdValue">***</a>
+                    <span class="subtext text-glow-small text-colour-white font-inter"> K/D </span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sidebar">
+    <h2 class="text-colour-white font-inter text-glow header">Settings</h2>
+
+<input
+  class="font-inter input-box"
+  id="faceit-nickname"
+  placeholder="Faceit Username"
+  type="text"
+/>
+
+<hr class="divider-clear">
+
+<button
+  class="link-box"
+  id="get-link-btn">
+  Open Link
+</button>
+
+<hr class="divider">
+<span class="subtext text-glow-small font-inter text-colour-white">Case sensitive</span>
+    
+
+
+
+</div>
+
+    
+    
+    <!-- probably not final -->
+
+<script>
+const nicknameInput = document.getElementById("faceit-nickname");
+const getLinkBtn = document.getElementById("get-link-btn");
+
+const nicknameValue = document.getElementById("nicknameValue");
+const eloValue = document.getElementById("eloValue");
+const kdValue = document.getElementById("kdValue");
+const levelPic = document.getElementById("level-pic");
+
+let loading = false;
+
+// 🔥 ENTER KEY HANDLER (NO FORMS)
+nicknameInput.addEventListener("keydown", async (e) => {
+  if (e.key !== "Enter" || loading) return;
+
+  e.preventDefault();
+
+  const nickname = nicknameInput.value.trim();
+  if (!nickname) return;
+
+  // Update URL (no reload)
+  history.replaceState(
+    null,
+    "",
+    `?nickname=${encodeURIComponent(nickname)}`
+  );
+
+  loading = true;
+
+  const apiUrl = `/api/player/${encodeURIComponent(nickname)}`;
+  console.log("FETCHING:", apiUrl);
+
+  try {
+    const res = await fetch(apiUrl);
+
+    console.log("STATUS:", res.status);
+
+    if (!res.ok) {
+      throw new Error(`API error ${res.status}`);
+    }
+
+    const data = await res.json();
+    console.log("DATA:", data);
+
+    nicknameValue.textContent = data.nickname || "User not found";
+    eloValue.textContent = data.elo || "N/A";
+    kdValue.textContent = data.average_kd || "N/A";
+
+    const skill = data.skill_level || 1;
+    levelPic.src =
+      `https://faceit-widget.pages.dev/assets/icons/skill_level/skill_level_${skill}.svg`;
+  } catch (err) {
+    console.error("FETCH FAILED:", err);
+  } finally {
+    loading = false;
+  }
+});
+
+// BUTTON → OPEN LINK
+getLinkBtn.addEventListener("click", () => {
+  const nickname = nicknameInput.value.trim();
+  if (!nickname) return;
+
+  window.open(
+    `/user.html?nickname=${encodeURIComponent(nickname)}`,
+    "_blank"
+  );
+});
+</script>
+
+
+
+
+</body>
+
+    
+    
+</body>

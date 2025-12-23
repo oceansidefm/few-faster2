@@ -1,0 +1,165 @@
+.text-glow {
+    color: #f9f9f9;
+    text-shadow: 0 0 5px #D9D9D9, 0 0 10px #D9D9D9, 0 0 15px #D9D9D9;
+}
+
+.text-glow-large {
+    color: #F9F9F9;
+    text-shadow: 0 0 5px #D9D9D9, 0 0 10px #D9D9D9, 0 0 15px #D9D9D9,0 0 17px #D9D9D9 ;
+}
+
+.text-glow-small {
+    color: #F9F9F9;
+    text-shadow: 0 0 5px #D9D9D9, 0 0 10px #D9D9D9;
+}
+
+
+.image-glow {
+  filter: drop-shadow(0 0 5px #000000)
+
+}
+
+.text-colour-white {
+    color: white;
+}
+
+.header {
+    font-size: 3rem;
+    font-weight: bold;        
+    line-height: .86;  
+}
+
+.subtext {
+  margin-top: 0;     
+  padding-top: -10;   
+  line-height: .2;  
+}
+
+.noline {
+    text-decoration: none;
+}
+
+.main-homepage {
+        
+        background-color: rgba(13, 13, 13, 0.67);
+        border-radius: 10px;
+        border: 1px solid rgba(53, 53, 53, .23);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        padding: 2%;
+        backdrop-filter: blur(23px);
+        text-decoration: none;
+}
+
+.divider {
+  margin: 15px 0;           /* adds space above/below the line */
+  border: none;             /* removes default */
+  border-top: 1px solid #2b2b2b; /* thin custom line */
+  width: 100%;
+}
+
+.divider-clear {
+  margin: 15px 0;           /* adds space above/below the line */
+  border: none;             /* removes default */
+  border-top: 1px solid #ffffff00; /* thin custom line */
+  width: 100%;
+}
+
+
+
+.font-doto {
+    font-family: "Doto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "ROND" 0;
+}
+
+.font-bytesized {
+  font-family: "Bytesized", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+
+    background-color: rgba(13, 13, 13, 0.67);
+    border: 1px solid rgba(53, 53, 53, .23);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(23px);
+    text-decoration: none;
+}
+
+
+.input-box {
+  
+  background-color: #222;   
+  color: white;                
+  border: none;                
+  border-radius: 12px;        
+  padding: 10px 14px;          
+  font-size: 16px;             
+  outline: none;               
+  width: 100%;                 
+  box-sizing: border-box;      
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+  box-shadow: 0 0 5px #000000;;
+
+}
+
+.input-box:hover {
+  background-color: #1e1e2f;      
+  box-shadow: 0 0 5px #434368, 0 0 10px #434368;;
+}
+
+.input-box:focus {
+  background-color: #161622;      
+  box-shadow: 0 0 5px #1e1e2f, 0 0 10px #1e1e2f;;
+}
+
+.link-box {
+  
+  background-color: #222;   
+  color: white;                
+  border: none;                
+  border-radius: 12px;        
+  padding: 10px 14px;          
+  font-size: 16px;             
+  outline: none;               
+  width: 100%;                 
+  box-sizing: border-box;      
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 5px #000000;;
+}
+
+.link-box:hover {
+  background-color: #1e1e2f;      
+  box-shadow: 0 0 5px #434368, 0 0 10px #434368;;
+}
+
+
+body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center; 
+      align-items: center;     
+      background-color: #0B0B0B;
+      background-image: url('assets/mirage_night.jpg');  
+}
+

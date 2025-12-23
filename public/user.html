@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info</title>
+    <link rel="stylesheet" href="userstyles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bytesized&family=Doto&display=swap" rel="stylesheet">
+</head>
+<body>
+   <div class="main-homepage">
+        <div style="display: flex; align-items: center;">
+                 
+            <div>
+                <img class="text-glow" id="level-pic" alt="" loading="lazy" width="64" height="64" decoding="async" data-nimg="1" src="https://faceit-widget.pages.dev/assets/icons/skill_level/skill_level_0.svg" style="margin-right: 20px; color: transparent;">
+            </div>
+
+            <div>
+                <a class="noline text-glow text-colour-white text-center header font-bytesized" id="nicknameValue" >Username</a>
+                <br>
+                <a class="noline subtext text-glow-large text-colour-white font-inter" id="eloValue">Elo</a>
+                    <!-- <span class="subtext text-glow-small text-colour-white font-inter"> Elo </span> -->
+                    <span class="subtext text-glow-small text-colour-white font-inter"> | </span>
+                <a class="noline subtext text-glow-large text-colour-white font-inter" id="kdValue">***</a>
+                    <span class="subtext text-glow-small text-colour-white font-inter"> K/D </span>
+            </div>
+
+        </div>
+    </div>
+<script>
+    
+// Get nickname from URL query string
+const urlParams = new URLSearchParams(window.location.search);
+const nickname = urlParams.get('nickname');
+
+if (nickname) {
+  const nicknameValue = document.getElementById('nicknameValue');
+  const eloValue = document.getElementById('eloValue');
+  const kdValue = document.getElementById('kdValue');
+  const levelPic = document.getElementById('level-pic');
+
+  fetch(`/api/player/${nickname}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        nicknameValue.textContent = data.error;
+        eloValue.textContent = "N/A";
+        kdValue.textContent = "N/A";
+        levelPic.src = `https://faceit-widget.pages.dev/assets/icons/skill_level/skill_level_1.svg`;
+        return;
+      }
+
+      nicknameValue.textContent = data.nickname;
+      eloValue.textContent = data.elo;
+      kdValue.textContent = data.average_kd;
+      const skill = data.skill_level || 1;
+      levelPic.src = `https://faceit-widget.pages.dev/assets/icons/skill_level/skill_level_${skill}.svg`;
+    })
+    .catch(err => {
+      console.error(err);
+      nicknameValue.textContent = "Failed to load stats";
+    });
+} else {
+  console.error("No nickname in URL");
+}
+</script>
+
+</body>
+</html>
