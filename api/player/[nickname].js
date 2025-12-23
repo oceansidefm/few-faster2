@@ -4,7 +4,7 @@
 const FACEIT_API_KEY = "855ef453-e82a-40dc-8d4e-f7aa0ab9894d";
 
 
-import 'dotenv/config'; // if using CommonJS, use: require('dotenv').config();
+
 
 // Simple in-memory cache for 1 minute
 const cache = new Map();
@@ -106,3 +106,4 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Server error or invalid API key" });
   }
 }
+
