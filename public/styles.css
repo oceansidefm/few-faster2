@@ -41,10 +41,10 @@
 
 .main-homepage {
         
-        background-color: rgba(13, 13, 13, 0.67);
+        background-color: rgba(13, 13, 13, 0.77);
         border-radius: 10px;
         border: 1px solid rgba(53, 53, 53, .23);
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+
         padding: 2%;
         backdrop-filter: blur(23px);
         text-decoration: none;
